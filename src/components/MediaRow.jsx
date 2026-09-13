@@ -1,23 +1,26 @@
-import { useLocation, useNavigate } from 'react-router';
-
-export default function Single() {
-  const { state } = useLocation();
-  const navigate = useNavigate();
-  const item = state?.item;
-
-  if (!item) return null;
+export default function MediaRow(props) {
+  const { item, setSelectedItem } = props;
 
   return (
-    <div>
-      <button onClick={() => navigate(-1)}>Go back</button>
-      <h2>{item.title}</h2>
-      {item.media_type.includes('video') ? (
-        <video controls src={item.filename} width="100%" />
-      ) : (
-        <img src={item.filename} alt={item.title} width="100%" />
-      )}
-      <p>{item.description}</p>
-      <p>Created: {new Date(item.created_at).toLocaleDateString()}</p>
-    </div>
+    <tr>
+      <td>
+        <img
+          src={item.thumbnail}
+          alt={item.title}
+          style={{ width: '100px', height: 'auto' }}
+        />
+      </td>
+      <td>{item.title}</td>
+      <td>{item.description}</td>
+      <td>{new Date(item.created_at).toLocaleDateString()}</td>
+      <td>{item.filesize} bytes</td>
+      <td>{item.media_type}</td>
+      <td>{item.user_id}</td>
+      <td>
+        <button onClick={() => setSelectedItem(item)}>
+          View
+        </button>
+      </td>
+    </tr>
   );
 }
