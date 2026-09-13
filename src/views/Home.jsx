@@ -36,10 +36,26 @@ const mediaArray = [
 ];
 
 import MediaRow from '../components/MediaRow';
-
+import { useState, useEffect } from 'react';
+import { fetchData } from '../utils/fetchData';
 const Home = (props) => {
   const { setSelectedItem } = props;
+  const [mediaArray, setMediaArray] = useState([]);
+  
+ useEffect(() => {
+    const getMedia = async () => {
+      try{
+        const json = await fetchData('test.json');
+        setMediaArray(json);
+        
+    }catch (error){
+      console.error('Failed to fetch media data:', error);
+    }
+    };
+    getMedia();
+}, []);
 
+  console.log(mediaArray);
   return (
     <>
       <h2>My Media</h2>
