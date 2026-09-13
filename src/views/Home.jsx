@@ -1,5 +1,4 @@
 
-
 import MediaRow from '../components/MediaRow';
 import { useState, useEffect } from 'react';
 import { fetchData } from '../utils/fetchData';
@@ -20,7 +19,7 @@ const Home = (props) => {
     getMedia();
 }, []);
 
-  console.log(mediaArray);
+
   return (
     <>
       <h2>My Media</h2>
