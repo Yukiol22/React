@@ -6,10 +6,12 @@ export default function Single() {
   const item = state?.item;
 
   if (!item) return null;
-    return (
+
+  return (
     <div>
       <button onClick={() => navigate(-1)}>Go back</button>
       <h2>{item.title}</h2>
+      <p><strong>Owner:</strong> {item.username}</p>
       {item.media_type.includes('video') ? (
         <video controls src={item.filename} width="100%" />
       ) : (
@@ -18,5 +20,5 @@ export default function Single() {
       <p>{item.description}</p>
       <p>Created: {new Date(item.created_at).toLocaleDateString()}</p>
     </div>
-     );
+  );
 }

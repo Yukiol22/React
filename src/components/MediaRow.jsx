@@ -1,6 +1,7 @@
+import { useNavigate } from 'react-router';
 export default function MediaRow(props) {
-  const { item, setSelectedItem } = props;
-
+  const { item } = props;
+  const navigate = useNavigate();
   return (
     <tr>
       <td>
@@ -15,9 +16,9 @@ export default function MediaRow(props) {
       <td>{new Date(item.created_at).toLocaleDateString()}</td>
       <td>{item.filesize} bytes</td>
       <td>{item.media_type}</td>
-      <td>{item.user_id}</td>
+      <td>{item.username}</td>
       <td>
-        <button onClick={() => setSelectedItem(item)}>
+        <button onClick={() => navigate('/single', { state: { item } })}>
           View
         </button>
       </td>

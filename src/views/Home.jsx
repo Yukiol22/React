@@ -7,23 +7,33 @@ const Home = (props) => {
   const { setSelectedItem } = props;
   const [mediaArray, setMediaArray] = useState([]);
   
- useEffect(() => {
+  useEffect(() => {
     const getMedia = async () => {
-      try{
-        const json = await fetchData('test.json');
-        setMediaArray(json);
-        
-    }catch (error){
-      console.error('Failed to fetch media data:', error);
-    }
+      try {
+        const mediaData = await fetchData(import.meta.env.VITE_MEDIA_API + '/media');
+
+        const mediaWithUser = await Promise.all(
+          mediaData.map(async (item) => {
+            const userData = await fetchData(
+              import.meta.env.VITE_AUTH_API + '/users/' + item.user_id
+            );
+            return { ...item, username: userData.username };
+          })
+        );
+
+        setMediaArray(mediaWithUser);
+      } catch (error) {
+        console.error('Failed to fetch media data:', error);
+      }
     };
+
     getMedia();
-}, []);
+  }, []);
 
   console.log(mediaArray);
   return (
     <>
-      <h2>My Media</h2>
+    <h2>Home</h2>
       <table>
         <thead>
           <tr>
@@ -33,6 +43,7 @@ const Home = (props) => {
             <th>Created</th>
             <th>Size</th>
             <th>Type</th>
+            <th>Owner</th>
             <th>Actions</th>
           </tr>
         </thead>
