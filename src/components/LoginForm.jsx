@@ -1,6 +1,9 @@
-import useForm from '../hooks/formHooks'; // NO curly braces around useForm
-
+import useForm from '../hooks/formHooks';
+import { useAuthentication } from '../hooks/apiHooks';
+import { useNavigate } from 'react-router';
 const LoginForm = () => {
+  const navigate = useNavigate()
+  const {postLogin} = useAuthentication()
   const initValues = {
     username: '',
     password: '',
@@ -12,7 +15,7 @@ const LoginForm = () => {
       console.log('Login result:', loginResult);
       if (loginResult.token) {
         localStorage.setItem('token', loginResult.token);
-        navigate('/');
+        navigate('/profile');
       }
     } catch (error) {
       console.error('Login failed:', error.message);
