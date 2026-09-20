@@ -7,6 +7,7 @@ const SingleView = (props) => {
         <>
           <button onClick={() => setSelectedItem(null)}>Close</button>
           <h3>{item.title}</h3>
+          <p><strong>Owner:</strong> {item.username}</p>
           {item.media_type.includes('video') ? (
             <video controls src={item.filename} width="100%" />
           ) : (

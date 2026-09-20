@@ -10,6 +10,7 @@ export default function Single() {
     <div>
       <button onClick={() => navigate(-1)}>Go back</button>
       <h2>{item.title}</h2>
+      <p><strong>Owner:</strong> {item.username}</p>
       {item.media_type.includes('video') ? (
         <video controls src={item.filename} width="100%" />
       ) : (

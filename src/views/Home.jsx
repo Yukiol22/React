@@ -1,28 +1,20 @@
+<<<<<<< HEAD
 
+=======
+import { useMedia } from '../hooks/apiHooks';
+>>>>>>> forms
 import MediaRow from '../components/MediaRow';
-import { useState, useEffect } from 'react';
-import { fetchData } from '../utils/fetchData';
-const Home = (props) => {
-  const { setSelectedItem } = props;
-  const [mediaArray, setMediaArray] = useState([]);
-  
- useEffect(() => {
-    const getMedia = async () => {
-      try{
-        const json = await fetchData('test.json');
-        setMediaArray(json);
-        
-    }catch (error){
-      console.error('Failed to fetch media data:', error);
-    }
-    };
-    getMedia();
-}, []);
 
+<<<<<<< HEAD
+=======
+export default function Home(props) {
+  const { setSelectedItem } = props;
+  const { mediaArray } = useMedia();
+>>>>>>> forms
 
   return (
-    <>
-      <h2>My Media</h2>
+    <div>
+      <h2>Home</h2>
       <table>
         <thead>
           <tr>
@@ -32,6 +24,7 @@ const Home = (props) => {
             <th>Created</th>
             <th>Size</th>
             <th>Type</th>
+            <th>Owner</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -45,8 +38,6 @@ const Home = (props) => {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
-};
-
-export default Home;
+}
