@@ -1,16 +1,9 @@
-<<<<<<< HEAD
-
-=======
 import { useMedia } from '../hooks/apiHooks';
->>>>>>> forms
 import MediaRow from '../components/MediaRow';
 
-<<<<<<< HEAD
-=======
 export default function Home(props) {
   const { setSelectedItem } = props;
   const { mediaArray } = useMedia();
->>>>>>> forms
 
   return (
     <div>
